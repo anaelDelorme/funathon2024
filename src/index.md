@@ -9,10 +9,12 @@ toc: false
 </div>
 
 <div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
-  <div class="card">
+  <div class="card" style="text-align: center;">
     
-  <h1>Tableau de bord du trafic aérien ✈️</h1>
-
+  <h1><a href="tbbord_trafic_aerien" style="text-decoration: none; color: inherit;">Tableau de bord du trafic aérien ✈️</a></h1>
+  <a href="tbbord_trafic_aerien">
+    <img src="img/pilote.jfif" width="75%" alt="Pilote" style="margin-top: 20px;"></img>
+  </a><br/>
   </div>
   <div class="card">${
     resize((width) => Plot.plot({
