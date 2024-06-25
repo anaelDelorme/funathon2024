@@ -5,7 +5,7 @@ toc: false
 <div class="hero">
   <h1>Funathon 2024</h1>
   <h2>Ce site présente mes <i>réussites</i> dans le cadre du Funathon 2024 organisé par l'Insee et la DGAC.✈️</h2>
-  <a href="https://inseefrlab.github.io/funathon2024/">Plus d'infos sur le Funathon<span style="display: inline-block; margin-left: 0.25rem;">↗︎</span></a>
+  <a href="https://inseefrlab.github.io/funathon2024/">Plus d'infos sur le Funathon 2024<span style="display: inline-block; margin-left: 0.25rem;">↗︎</span></a>
 </div>
 
 <div class="grid grid-cols-2" style="grid-auto-rows: 504px;">

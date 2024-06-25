@@ -10,4 +10,4 @@ geojson_line=$(grep "geojson:$" "$file" -A1 | tail -n1 | tr -d ' ')
 geojson_url=$(echo "$geojson_line" | cut -d '"' -f 2)
 
 # Faire un curl de l'URL du geojson airport
-curl "$geojson_url"
+curl "$geojson_url" 

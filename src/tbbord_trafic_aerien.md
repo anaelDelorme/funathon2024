@@ -193,8 +193,8 @@ L.geoJSON(airports_location, {
     }
 }).addTo(map);
 ```
-  
-  </div>
+
+</div>
 
 
 <div class="card grid-colspan-2">
