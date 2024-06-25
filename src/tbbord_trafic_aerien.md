@@ -191,7 +191,7 @@ L.geoJSON(airports_location, {
             'Code OACI: ' + feature.properties['Code.OACI'] + '<br>' +
             'Trafic: ' + feature.properties.trafic);
     }
-}).addTo(map);
+}).addTo(map); 
 ```
 
 </div>
