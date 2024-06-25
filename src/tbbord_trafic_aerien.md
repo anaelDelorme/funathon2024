@@ -19,7 +19,7 @@ const airports_location = FileAttachment("data/airports_location.json").json()
 ```
 
 <div class="grid grid-cols-2">
-  <div class="card">
+  <div class="card  grid-colspan-2">
 <h1>Fréquentation des Aéroports</h1>
 
 ```js
@@ -31,27 +31,8 @@ const choix_aeroport = view(Inputs.select(uniqueAptNoms, { value: "TOULOUSE-BLAG
 ```
 
 ```js
-/*plot non affiché
-const plot = Plot.plot({
-  y: {grid: true},
-  marks: [
-    () => htl.svg`<defs>
-      <linearGradient id="gradient" gradientTransform="rotate(90)">
-        <stop offset="20%" stop-color="steelblue" stop-opacity="0.5" />
-        <stop offset="100%" stop-color="brown" stop-opacity="0" />
-      </linearGradient>
-    </defs>`,
-    Plot.areaY(filteredAirports, {x: "date", y: "trafic", fill: "url(#gradient)"}),
-    Plot.lineY(filteredAirports, {x: "date", y: "trafic", stroke: "steelblue"}),
-    Plot.ruleY([0])
-  ]
-})
-*/
-```
-
-```js
 const filteredAirports = airports.filter((airport) => airport.apt_nom === choix_aeroport);
-const myChart = echarts.init(display(html`<div style="width: 600px; height:400px;"></div>`));
+const myChart = echarts.init(display(html`<div style="width: 100%; height:400px;"></div>`));
 let data = filteredAirports;
 data = data.map(entry => ({ date: entry.date, trafic: entry.trafic }));
 data.forEach((entry) => {
@@ -141,63 +122,7 @@ myChart.setOption(option);
 
   
   </div>
-  <div class="card">
-  
-<h1>Carte</h1>
-
-```js
-
-const mergedTable = airports_location.join(airports, { on: 'apt' });
-
-
-```
-
-
-```js
-const div = display(document.createElement("div"));
-div.style = "height: 400px;";
-
-const map = L.map(div)
-  .setView([51.505, -0.09], 2);
-
-L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-})
-  .addTo(map);
-
-L.marker([51.5, -0.09])
-  .addTo(map)
-  .bindPopup("A nice popup<br> indicating a point of interest.")
-  .openPopup();
-
-
-L.geoJSON(airports_location, {
-    // Définir les options de style des marqueurs
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: L.icon({
-                iconUrl: '_file/img/airport.png',
-                iconSize: [50, 50],
-                iconAnchor: [12, 41],
-                popupAnchor: [1, -34],
-                shadowSize: [41, 41]
-            })
-        });
-    },
-    // Ajouter un popup avec les informations de chaque point
-    onEachFeature: function (feature, layer) {
-        layer.bindPopup('<strong>' + feature.properties.Nom + '</strong><br>' +
-            'Code IATA: ' + feature.properties['Code.IATA'] + '<br>' +
-            'Code OACI: ' + feature.properties['Code.OACI'] + '<br>' +
-            'Trafic: ' + feature.properties.trafic);
-    }
-}).addTo(map); 
-```
-
-</div>
-
-
-<div class="card grid-colspan-2">
+<div class="card">
   
 <h1>Statistique de fréquentations par mois</1>
 
@@ -257,17 +182,64 @@ display(Inputs.table(airports_filtres, {
   
   </div>
 
+
+  <div class="card">
+  
+<h1>Carte</h1>
+
+```js
+
+//const mergedTable = airports_location.join(airports, { on: 'apt' });
+
+
+```
+
+
+```js
+const div = display(document.createElement("div"));
+div.style = "height: 400px;";
+
+const map = L.map(div)
+  .setView([51.505, -0.09], 2);
+
+L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+})
+  .addTo(map);
+
+L.marker([51.5, -0.09])
+  .addTo(map)
+  .bindPopup("A nice popup<br> indicating a point of interest.")
+  .openPopup();
+
+
+L.geoJSON(airports_location, {
+    // Définir les options de style des marqueurs
+    pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {
+            icon: L.icon({
+                iconUrl: '_file/img/airport.png',
+                iconSize: [50, 50],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            })
+        });
+    },
+    // Ajouter un popup avec les informations de chaque point
+    onEachFeature: function (feature, layer) {
+        layer.bindPopup('<strong>' + feature.properties.Nom + '</strong><br>' +
+            'Code IATA: ' + feature.properties['Code.IATA'] + '<br>' +
+            'Code OACI: ' + feature.properties['Code.OACI'] + '<br>' +
+            'Trafic: ' + feature.properties.trafic);
+    }
+}).addTo(map); 
+```
+
 </div>
 
 
-## Compagnies
 
-```js
-Inputs.table(companies)
-```
 
-##  Liaisons
+</div>
 
-```js
-Inputs.table(liaisons)
-```
