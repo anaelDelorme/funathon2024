@@ -28,12 +28,16 @@ jobs:
         with:
           path: "./requirements.txt"  
 
+      - name: Create config file
+        run: |
+          echo "window.__CONFIG__ = {" > ./src/config.js
+          echo "  X_API_ID: '${{ secrets.X_API_ID }}'," >> ./src/config.js
+          echo "  X_API_KEY: '${{ secrets.X_API_KEY }}'" >> ./src/config.js
+          echo "};" >> ./src/config.js
+
       - name: Build
         run: |
             npm run build
-        env:
-          X_API_ID: ${{ secrets.X_API_ID }}
-          X_API_KEY: ${{ secrets.X_API_KEY }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
