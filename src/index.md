@@ -11,16 +11,16 @@ toc: false
 <div class="grid grid-cols-2" style="grid-auto-rows: 504px;">
   <div class="card" style="text-align: center;">
     
-  <h1><a href="tbbord_trafic_aerien" style="text-decoration: none; color: inherit;">Tableau de bord du trafic aérien ✈️</a></h1>
-  <a href="tbbord_trafic_aerien">
+  <h1><a href="1-tbbord_trafic_aerien" style="text-decoration: none; color: inherit;">Tableau de bord du trafic aérien ✈️</a></h1>
+  <a href="1-tbbord_trafic_aerien">
     <img src="img/pilote.jfif" width="75%" alt="Pilote" style="margin-top: 20px;"></img>
   </a><br/>
   </div>
     <div class="card" style="text-align: center;">
     
-  <h1><a href="radar" style="text-decoration: none; color: inherit;">Flight Radar 📡</a></h1>
-  <a href="radar">
-    <img src="img/radar.jfif" width="75%" alt="Radar" style="margin-top: 20px;"></img>
+  <h1><a href="2-traveltime" style="text-decoration: none; color: inherit;">Temps de trajet ⏱️</a></h1>
+  <a href="2-traveltime">
+    <img src="img/gare.jfif" width="75%" alt="traveltime" style="margin-top: 20px;"></img>
   </a><br/>
   </div>
 </div>

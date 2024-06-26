@@ -21,3 +21,7 @@ compagnies:
   2022: "https://www.data.gouv.fr/fr/datasets/r/bcec3e1e-940a-4772-bc28-0d7b2b53c718"
 geojson:
   airport: "https://minio.lab.sspcloud.fr/projet-funathon/2024/sujet2/aeroports.geojson"
+traveltime:
+  gares: "https://www.data.gouv.fr/fr/datasets/r/dc517700-4534-48fb-ab14-6c232b1a7562"
+
+

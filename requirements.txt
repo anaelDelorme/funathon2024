@@ -5,3 +5,5 @@ plotly
 plotnine
 great_tables
 folium
+requests
+yaml
