@@ -30,8 +30,8 @@ jobs:
 
       - name: Create config file
         run: |
-          echo "export const X_API_ID = '${{ secrets.X_API_ID }}';" > ./src/config.js
-          echo "export const X_API_KEY = '${{ secrets.X_API_KEY }}';" >> ./src/config.js
+          echo "export const X_API_ID = '${{ secrets.X_API_ID }}';" > ./src/components/config.js
+          echo "export const X_API_KEY = '${{ secrets.X_API_KEY }}';" >> ./src/components/config.js
 
       - name: Build
         run: |
