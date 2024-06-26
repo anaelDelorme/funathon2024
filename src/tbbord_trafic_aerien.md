@@ -2,7 +2,10 @@
 theme: dashboard
 title:  Trafic aérien
 toc: false
+sql:
+  airports: data/airports.csv
 ---
+
 ```js
 import * as echarts from "npm:echarts";
 ```
@@ -12,21 +15,23 @@ import * as echarts from "npm:echarts";
 <!-- Load and transform the data -->
 
 ```js
-const airports = FileAttachment("data/airports.csv").csv({typed: true});
+//const airports = FileAttachment("data/airports.csv").csv({typed: true});
 const companies = FileAttachment("data/companies.csv").csv({typed: true});
 const liaisons = FileAttachment("data/liaisons.csv").csv({typed: true});
 const airports_location = FileAttachment("data/airports_location.json").json()
 ```
 
+
+
 <div class="grid grid-cols-2">
   <div class="card  grid-colspan-2">
 <h1>Fréquentation des Aéroports</h1>
 
+```sql id=[uniqueAptNoms]
+SELECT apt_nom FROM airports ORDER BY apt_nom
+```
+
 ```js
-const uniqueAptNoms = airports
-    .map((airport) => airport.apt_nom)
-    .filter((value, index, self) => self.indexOf(value) === index);
-uniqueAptNoms.sort();
 const choix_aeroport = view(Inputs.select(uniqueAptNoms, { value: "TOULOUSE-BLAGNAC", label: "Choisir l'aéroport" }));
 ```
 
@@ -124,7 +129,7 @@ myChart.setOption(option);
   </div>
 <div class="card">
   
-<h1>Statistique de fréquentations par mois</1>
+<h1>Statistiques de fréquentations par mois</1>
 
 ```js
 // Liste déroulante pour choisir le mois
@@ -152,6 +157,8 @@ function sparkbar(max) {
     display: flex;
     justify-content: end;">${(Math.round(x / 100)*100).toLocaleString('fr-FR', { useGrouping: true })}`
 }
+
+
 //Affichage du tableau formaté
 display(Inputs.table(airports_filtres, {
   columns: [
@@ -162,9 +169,9 @@ display(Inputs.table(airports_filtres, {
   ],
   header: {
     apt_nom: "Aéroport",
-    apt_pax_dep: "Passagers au départ",
-    apt_pax_arr: "Passagers à l'arrivée",
-    apt_pax_tr: "Passagers en transit"
+    apt_pax_dep: "Départ (nombre de passagers)",
+    apt_pax_arr: "Arrivée (nombre de passagers)",
+    apt_pax_tr: "Transit (nombre de passagers)"
   },
   sort: "apt_pax_dep", 
   reverse: true,
@@ -185,7 +192,10 @@ display(Inputs.table(airports_filtres, {
 
   <div class="card">
   
-<h1>Carte</h1>
+<h1>Fréquentation des aéroports par mois</h1>
+
+<i>Choix du mois dans les statistiques de fréquentations par mois</i>
+ 
 
 ```js
 
@@ -196,29 +206,30 @@ display(Inputs.table(airports_filtres, {
 
 
 ```js
+//logo à afficher
+const img_airport = [
+  FileAttachment("img/airport_green.png"),
+  FileAttachment("img/airport_blue.png"),
+  FileAttachment("img/airport_red.png")
+];
+
 const div = display(document.createElement("div"));
 div.style = "height: 400px;";
 
 const map = L.map(div)
-  .setView([51.505, -0.09], 2);
+  .setView([51.505, -0.09], 4);
 
 L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 })
   .addTo(map);
 
-L.marker([51.5, -0.09])
-  .addTo(map)
-  .bindPopup("A nice popup<br> indicating a point of interest.")
-  .openPopup();
-
-
 L.geoJSON(airports_location, {
     // Définir les options de style des marqueurs
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: L.icon({
-                iconUrl: '_file/img/airport.png',
+                iconUrl: img_airport[0].href,
                 iconSize: [50, 50],
                 iconAnchor: [12, 41],
                 popupAnchor: [1, -34],
