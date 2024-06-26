@@ -136,8 +136,8 @@ console.log("datetime",date_choisie);
 ```js
 console.log("datetime",date_choisie);
 
-const apiId = window.__CONFIG__.X_API_ID;
-const apiKey = window.__CONFIG__.X_API_KEY;
+const xApiIdValue = window.__CONFIG__.X_API_ID;
+const xApiKeyValue = window.__CONFIG__.X_API_KEY;
 
 const headers = {
         'Content-Type': 'application/json',
