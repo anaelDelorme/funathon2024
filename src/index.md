@@ -16,20 +16,13 @@ toc: false
     <img src="img/pilote.jfif" width="75%" alt="Pilote" style="margin-top: 20px;"></img>
   </a><br/>
   </div>
-  <div class="card">${
-    resize((width) => Plot.plot({
-      title: "How big are penguins, anyway? 🐧",
-      width,
-      grid: true,
-      x: {label: "Body mass (g)"},
-      y: {label: "Flipper length (mm)"},
-      color: {legend: true},
-      marks: [
-        Plot.linearRegressionY(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species"}),
-        Plot.dot(penguins, {x: "body_mass_g", y: "flipper_length_mm", stroke: "species", tip: true})
-      ]
-    }))
-  }</div>
+    <div class="card" style="text-align: center;">
+    
+  <h1><a href="radar" style="text-decoration: none; color: inherit;">Flight Radar 📡</a></h1>
+  <a href="radar">
+    <img src="img/radar.jfif" width="75%" alt="Radar" style="margin-top: 20px;"></img>
+  </a><br/>
+  </div>
 </div>
 
 
