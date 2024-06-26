@@ -7,7 +7,7 @@ toc: false
 <!-- Load and transform the data -->
 
 ```js
-import { __CONFIG__ } from "./components/config.js";
+import { X_API_ID, X_API_KEY } from "./components/config.js";
 const gare = FileAttachment("data/liste-des-gares.csv").dsv({delimiter: ";", typed: true});
 const gare_geo = FileAttachment("data/liste-des-gares.geojson").json();
 const grandesGares = ["Paris-Nord","Paris-Montparnasse","Paris-Gare-de-Lyon","Lyon-Perrache", "Marseille-St-Charles", "Toulouse-Matabiau", "Lille-Flandres", "Bordeaux-St-Jean", "Nice-Ville", "Nantes", "Strasbourg-Ville" , "Montpellier-St-Roch"]
@@ -137,8 +137,8 @@ console.log("datetime",date_choisie);
 ```js
 console.log("datetime",date_choisie);
 
-const xApiIdValue = __CONFIG__.X_API_ID;
-const xApiKeyValue = __CONFIG__.X_API_KEY;
+const xApiIdValue = X_API_ID;
+const xApiKeyValue = X_API_KEY;
 
 const headers = {
         'Content-Type': 'application/json',
