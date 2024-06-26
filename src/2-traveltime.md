@@ -126,10 +126,15 @@ const choix_gare_arrivee = view(Inputs.select(grandesGares, { value: "Toulouse-M
 let depart_coords = getStationCoordinates(choix_gare_depart, stations_data, false);
 let arrivee_coords = getStationCoordinates(choix_gare_arrivee, stations_data, false);
 const now = new Date();
+const maxDate = new Date(now.getTime() + (14 * 24 * 60 * 60 * 1000)); // 2 semaines après aujourd'hui
+const minDate = new Date(now.getTime() - (21 * 24 * 60 * 60 * 1000)); // 3 semaines avant aujourd'hui
+
 
 const date_choisie = view(Inputs.datetime({
     label: "Moment",
-    value: now.toISOString().slice(0, 16)  
+    value: now.toISOString().slice(0, 16) ,
+    min: minDate,
+    max: maxDate
 }));
 console.log("datetime",date_choisie);
 
