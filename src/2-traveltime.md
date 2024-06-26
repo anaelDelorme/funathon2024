@@ -7,6 +7,7 @@ toc: false
 <!-- Load and transform the data -->
 
 ```js
+import { __CONFIG__ } from "./components/config.js";
 const gare = FileAttachment("data/liste-des-gares.csv").dsv({delimiter: ";", typed: true});
 const gare_geo = FileAttachment("data/liste-des-gares.geojson").json();
 const grandesGares = ["Paris-Nord","Paris-Montparnasse","Paris-Gare-de-Lyon","Lyon-Perrache", "Marseille-St-Charles", "Toulouse-Matabiau", "Lille-Flandres", "Bordeaux-St-Jean", "Nice-Ville", "Nantes", "Strasbourg-Ville" , "Montpellier-St-Roch"]
@@ -19,7 +20,7 @@ const grandesGares = ["Paris-Nord","Paris-Montparnasse","Paris-Gare-de-Lyon","Ly
 
 ```js
 const gare_geo_filter = gare_geo.features.filter(gare => grandesGares.includes(gare.properties.libelle));
-console.log("Ttt",gare_geo_filter);
+//console.log("Ttt",gare_geo_filter);
 
 // logo à afficher
 const img_train = [
@@ -122,8 +123,8 @@ const choix_gare_arrivee = view(Inputs.select(grandesGares, { value: "Toulouse-M
 ```
 
 ```js
-let depart_coords = getStationCoordinates(choix_gare_depart, stations_data, true);
-let arrivee_coords = getStationCoordinates(choix_gare_arrivee, stations_data, true);
+let depart_coords = getStationCoordinates(choix_gare_depart, stations_data, false);
+let arrivee_coords = getStationCoordinates(choix_gare_arrivee, stations_data, false);
 const now = new Date();
 
 const date_choisie = view(Inputs.datetime({
@@ -136,8 +137,8 @@ console.log("datetime",date_choisie);
 ```js
 console.log("datetime",date_choisie);
 
-const xApiIdValue = window.__CONFIG__.X_API_ID;
-const xApiKeyValue = window.__CONFIG__.X_API_KEY;
+const xApiIdValue = __CONFIG__.X_API_ID;
+const xApiKeyValue = __CONFIG__.X_API_KEY;
 
 const headers = {
         'Content-Type': 'application/json',
@@ -195,7 +196,7 @@ const requestBody = {
 
         // Vérifier si la requête a été traitée avec succès
         if (response.ok) {
-            console.log('La requête a bien été traitée');
+            //console.log('La requête a bien été traitée');
             responseContent = response.json();  
         } else {
             console.log(`Une erreur est survenue. Code de la réponse : ${response.status}`);

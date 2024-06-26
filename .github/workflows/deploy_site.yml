@@ -33,7 +33,7 @@ jobs:
           echo "window.__CONFIG__ = {" > ./src/config.js
           echo "  X_API_ID: '${{ secrets.X_API_ID }}'," >> ./src/config.js
           echo "  X_API_KEY: '${{ secrets.X_API_KEY }}'" >> ./src/config.js
-          echo "};" >> ./src/config.js
+          echo "};" >> ./src/components/config.js
 
       - name: Build
         run: |
