@@ -105,7 +105,7 @@ const minDate = new Date(now.getTime() - (21 * 24 * 60 * 60 * 1000)); // 3 semai
 
 
 const date_choisie = view(Inputs.datetime({
-    label: "Moment",
+    label: "Choisir le départ: ",
     value: now.toISOString().slice(0, 16) ,
     min: minDate,
     max: maxDate
