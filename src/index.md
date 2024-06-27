@@ -18,7 +18,7 @@ toc: false
   </div>
     <div class="card" style="text-align: center;">
     
-  <h1><a href="2-traveltime" style="text-decoration: none; color: inherit;">Temps de trajet ⏱️</a></h1>
+  <h1><a href="2-traveltime" style="text-decoration: none; color: inherit;">Temps de trajet en train ⏱️</a></h1>
   <a href="2-traveltime">
     <img src="img/gare.jfif" width="75%" alt="traveltime" style="margin-top: 20px;"></img>
   </a><br/>
