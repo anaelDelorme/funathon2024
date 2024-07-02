@@ -13,11 +13,10 @@ import * as echarts from "npm:echarts";
 
 ```js
 const airports = FileAttachment("data/airports.csv").csv({typed: true});
-const companies = FileAttachment("data/companies.csv").csv({typed: true});
-const liaisons = FileAttachment("data/liaisons.csv").csv({typed: true});
+//const companies = FileAttachment("data/companies.csv").csv({typed: true});
+//const liaisons = FileAttachment("data/liaisons.csv").csv({typed: true});
 let airports_location = FileAttachment("data/airports_location.json").json();
 ```
-
 
 <div class="grid grid-cols-2">
   <div class="card  grid-colspan-2">
@@ -32,9 +31,9 @@ function capitalizeName(name) {
         .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join('-');
 }
-
+console.log("airports: ", airports);
 const uniqueAptNoms = airports
-    .map((airport) => capitalizeName(airport.apt_nom)) // Transformer les noms
+    .map((airport) => capitalizeName(airport.APT_NOM)) // Transformer les noms
     .filter((value, index, self) => self.indexOf(value) === index); // Garder uniquement les noms uniques
 
 uniqueAptNoms.sort(); // Trier les noms
@@ -44,7 +43,7 @@ const choix_aeroport = view(Inputs.select(uniqueAptNoms, { value: "Toulouse-Blag
 ```
 
 ```js
-const filteredAirports = airports.filter((airport) => airport.apt_nom === choix_aeroport.toUpperCase());
+const filteredAirports = airports.filter((airport) => airport.APT_NOM === choix_aeroport.toUpperCase());
 const myChart = echarts.init(display(html`<div style="width: 100%; height:400px;"></div>`));
 let data = filteredAirports;
 data = data.map(entry => ({ date: entry.date, trafic: entry.trafic }));
@@ -171,24 +170,24 @@ function sparkbar(max) {
 //Affichage du tableau formaté
 display(Inputs.table(airports_filtres, {
   columns: [
-    "apt_nom",
-    "apt_pax_dep",
-    "apt_pax_arr",
-    "apt_pax_tr"
+    "APT_NOM",
+    "APT_PAX_dep",
+    "APT_PAX_arr",
+    "APT_PAX_tr"
   ],
   header: {
-    apt_nom: "Aéroport",
-    apt_pax_dep: "Départ (nombre de passagers)",
-    apt_pax_arr: "Arrivée (nombre de passagers)",
-    apt_pax_tr: "Transit (nombre de passagers)"
+    APT_NOM: "Aéroport",
+    APT_PAX_dep: "Départ (nombre de passagers)",
+    APT_PAX_arr: "Arrivée (nombre de passagers)",
+    APT_PAX_tr: "Transit (nombre de passagers)"
   },
-  sort: "apt_pax_dep", 
+  sort: "APT_PAX_dep", 
   reverse: true,
   format: {
-    apt_nom: (x) => x.split(/[\s-]/).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' '),
-    apt_pax_dep: sparkbar(d3.max(airports_filtres, d => d.apt_pax_dep)),
-    apt_pax_arr: sparkbar(d3.max(airports_filtres, d => d.apt_pax_arr)),
-    apt_pax_tr: sparkbar(d3.max(airports_filtres, d => d.apt_pax_tr))
+    APT_NOM: (x) => x.split(/[\s-]/).map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' '),
+    APT_PAX_dep: sparkbar(d3.max(airports_filtres, d => d.APT_PAX_dep)),
+    APT_PAX_arr: sparkbar(d3.max(airports_filtres, d => d.APT_PAX_arr)),
+    APT_PAX_tr: sparkbar(d3.max(airports_filtres, d => d.APT_PAX_tr))
   }
   })
 );
@@ -281,7 +280,7 @@ function updateGeoJSONLayer() {
   // Mettre à jour les propriétés des features
   airports_location.features.forEach(feature => {
     const codeOACI = feature.properties['Code.OACI'];
-    const matchingAirport = airports_filtres.find(airport => airport.apt === codeOACI);
+    const matchingAirport = airports_filtres.find(airport => airport.APT === codeOACI);
     if (matchingAirport) {
       feature.properties.trafic = matchingAirport.trafic;
     }

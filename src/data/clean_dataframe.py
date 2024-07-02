@@ -7,6 +7,6 @@ def clean_dataframe(df):
     df['mois'] = df['mois'].str.replace(r'^0+', '', regex=True)
 
     # Convert all column names to lowercase
-    df.columns = df.columns.str.lower()
+    #df.columns = df.columns.str.lower()
 
     return df
