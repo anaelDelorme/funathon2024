@@ -6,3 +6,5 @@ plotnine
 great_tables
 folium
 requests
+pyarrow
+fastparquet
