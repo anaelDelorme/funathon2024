@@ -128,15 +128,15 @@ Le temps de trajet est de **${travel_time_hours}** heures et **${travel_time_min
 ```js
 const city1 = choix_gare_depart.split('-')[0].trim();
 const city2 = choix_gare_arrivee.split('-')[0].trim();
-
-const airTraffic_entre_gare_choisie = getAirTrafficBetweenCities(city1, city2, air_traffic);
+const air_traffic_2023 = air_traffic.filter((air_traffic) => air_traffic.an === 2023);
+const airTraffic_entre_gare_choisie = getAirTrafficBetweenCities(city1, city2, air_traffic_2023);
 
 const passagersFormatted = airTraffic_entre_gare_choisie.passagers.toLocaleString();
 const gainC02Formatted = airTraffic_entre_gare_choisie.gain_C02.toLocaleString();
 
 ```
 
-🌍🌡️ En 2019, le trafic arérien entre ${city1} et ${city2} est de ${passagersFormatted} personnes.  ✈️   
+🌍🌡️ En 2023, le trafic arérien entre ${city1} et ${city2} est de ${passagersFormatted} personnes.  ✈️   
 Si toutes ces personnes avaient pris le train, ${gainC02Formatted} tonnes d'équivalent CO2 auraient été économisés! 💚
 
 </div>

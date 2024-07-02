@@ -111,8 +111,8 @@ export function getAirTrafficBetweenCities(city1, city2, data) {
     // Filtrer les données pour inclure uniquement les vols entre city1 et city2 dans les deux sens
     const filteredData = data.filter(row => {
 
-      const depCity = row.lsn_dep_nom.toLowerCase();
-      const arrCity = row.lsn_arr_nom.toLowerCase();
+      const depCity = row.LSN_DEP_NOM.toLowerCase();
+      const arrCity = row.LSN_ARR_NOM.toLowerCase();
       return (
         (depCity.includes(lowerCity1) && arrCity.includes(lowerCity2)) ||
         (depCity.includes(lowerCity2) && arrCity.includes(lowerCity1))
@@ -121,11 +121,11 @@ export function getAirTrafficBetweenCities(city1, city2, data) {
     
     //console.log("filteredData", filteredData);
     const passagers = filteredData.reduce((sum, row) => {
-        return sum + row.lsn_pax_loc
+        return sum + row.LSN_PAX_loc
       }, 0);
     // Calculer le trafic total (PKT) en multipliant LSN_DIST par LSN_PAX_loc pour chaque ligne filtrée
     const totalTraffic = filteredData.reduce((sum, row) => {
-      return sum + (row.lsn_dist * row.lsn_pax_loc);
+      return sum + (row.LSN_DIST * row.LSN_PAX_loc);
     }, 0);
     //console.log("totalTraffic", filteredData);
     const GCO2_PER_PKT = 80;

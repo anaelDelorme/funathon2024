@@ -12,4 +12,4 @@ geojson:
 traveltime:
   gares: "https://www.data.gouv.fr/fr/datasets/r/dc517700-4534-48fb-ab14-6c232b1a7562"
 airtraffic: 
-  data: "https://www.data.gouv.fr/fr/datasets/r/0c0a451e-983b-4f06-9627-b5ff1bccd2fc"
+  Tout: "https://www.data.gouv.fr/fr/datasets/r/a3947c3b-36ae-4aa0-bee2-323f6d684f0e"
